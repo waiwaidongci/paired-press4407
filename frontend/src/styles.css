@@ -8,3 +8,9 @@ header button.text {color:var(--paper)}
 .hero aside { border-left:8px double var(--accent); }
 .eyebrow { text-transform:uppercase;border-left:0;border-top:3px solid var(--accent);padding:10px 0 0;max-width:420px; }
 .result-intro { border-left:8px double var(--accent); }
+
+/* Joint batch test: multi-select checkboxes inside a fieldset. */
+fieldset { border:1px solid var(--rule);margin:18px 0;padding:8px 18px 18px; }
+legend { font-size:13px;padding:0 8px; }
+label.com { flex-direction:row;align-items:center;gap:8px;font-size:14px; }
+label.com input[type=checkbox] { width:auto;min-width:0;accent-color:var(--accent); }

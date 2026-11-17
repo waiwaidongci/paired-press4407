@@ -21,6 +21,11 @@
   "defaults": {
     "resamples": 10000
   },
+  "joint_defaults": {
+    "resamples": 10000,
+    "joint_shard_size": 2000
+  },
+  "joint_algorithm": "跨纸批联合符号翻转检验：按纸样编号对齐，共享符号翻转，T=Σd/√Σd²，双侧最大值校正，分片幂等计算，全组校验后一次性发布",
   "names": [
     "栖木·米白纸套印",
     "栖木·棉纸校样",

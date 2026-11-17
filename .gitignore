@@ -1,6 +1,7 @@
 .env
 __pycache__/
 .venv/
+.pylibs/
 node_modules/
 dist/
 *.log

@@ -40,3 +40,14 @@ def validate_parameters(params):
             p[key]=float(p[key])
             if not math.isfinite(p[key]) or not (0.001<=p[key]<=0.2 if key=='alpha' else 0.5<=p[key]<=0.99): raise ValueError('显著性或功效超出范围')
     return p
+
+JOINT_PARAM_DEFAULTS={'resamples':10000,'joint_shard_size':2000}
+def validate_joint_parameters(params):
+    if not isinstance(params,dict) or set(params)-set(JOINT_PARAM_DEFAULTS): raise ValueError('存在未知联合检验参数')
+    p=JOINT_PARAM_DEFAULTS|params
+    for key,lo,hi in (('resamples',200,20000),('joint_shard_size',100,10000)):
+        v=p[key]
+        if isinstance(v,bool) or not isinstance(v,(int,float)) or int(v)!=v or not lo<=v<=hi:
+            raise ValueError(f'{key}必须是{lo}到{hi}的整数')
+        p[key]=int(v)
+    return p

@@ -7,6 +7,7 @@ from src.middlewares.auth import current_user,writer,admin
 from src.schemas.study import StudyInput
 from src.schemas.observation import ObservationInput
 from src.schemas.run import RunInput
+from src.schemas.joint_run import JointRunInput
 from src.schemas.review import ReviewInput
 from src.controllers import research
 from src.services import runs,studies
@@ -40,6 +41,12 @@ def list_runs(db=Depends(get_db),user=Depends(current_user)): return runs.list_r
 def create_run(data:RunInput,db=Depends(get_db),user=Depends(writer)): return research.create_run(db,data,user)
 @router.get('/runs/{id}')
 def get_run(id:int,db=Depends(get_db),user=Depends(current_user)): return runs.get(db,id)
+@router.get('/joint-runs')
+def list_joint(db=Depends(get_db),user=Depends(current_user)): return research.list_joint_runs(db)
+@router.post('/joint-runs')
+def create_joint(data:JointRunInput,db=Depends(get_db),user=Depends(writer)): return research.create_joint_run(db,data,user)
+@router.get('/joint-runs/{id}')
+def get_joint(id:int,db=Depends(get_db),user=Depends(current_user)): return research.get_joint_run(db,id)
 @router.post('/runs/{id}/review')
 def review(id:int,data:ReviewInput,db=Depends(get_db),user=Depends(admin)): return research.review_run(db,id,data,user)
 @router.get('/runs/{id}/export')
